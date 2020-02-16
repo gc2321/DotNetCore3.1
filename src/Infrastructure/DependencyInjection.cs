@@ -1,0 +1,18 @@
+﻿using Application.Common.Interfaces;
+using Infrastructure.Http;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace Infrastructure
+{
+    public static class DependencyInjection
+    {
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+        {
+            
+            services.AddScoped<IHttpService, HttpService>();
+            return services;
+        }
+    }
+
+}
