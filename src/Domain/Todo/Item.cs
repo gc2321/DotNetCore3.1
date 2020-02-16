@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Domain.Todo
 {
-    public class TodoItem
+    public class Item
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public int ListId { get; set; }
         public string Title { get; set; }
         public string Note { get; set; }

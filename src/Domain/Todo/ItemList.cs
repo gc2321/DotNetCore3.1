@@ -4,15 +4,15 @@ using System.Text;
 
 namespace Domain.Todo
 {
-    public class TodoList
+    public class ItemList
     {
-        public TodoList()
+        public ItemList()
         {
-            Items = new List<TodoItem>();
+            Items = new List<Item>();
         }
         public int Id { get; set; }
         public string Title { get; set; }
         public string Colour { get; set; }
-        public IList<TodoItem> Items { get; set; }
+        public IList<Item> Items { get; set; }
     }
 }

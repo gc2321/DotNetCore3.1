@@ -1,24 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
+import { Container } from 'semantic-ui-react';
+import axios from 'axios';
+import { IItem } from '../models/item';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    const [itemList, setItemList] = useState<IItem[]>([]);
+
+    useEffect(() => {
+        axios.get<IItem[]>('http://localhost:5000/todolist/')
+            .then(response => {
+                let toDoList: IItem[] = [];
+                response.data.forEach(item => {
+                    toDoList.push(item);
+                })
+                setItemList(toDoList);
+            });
+    }, []);
+
+    return (
+        <Fragment>
+            <Container style={{ marginTop: '7em' }}>
+
+            </Container>na
+        </Fragment>
+    );
+};
 
 export default App;

@@ -11,7 +11,7 @@ namespace Application.TodoLists
 {
     public class GetTodosQuery
     {
-        public class Query : IRequest<TodoList>
+        public class Query : IRequest<ItemList>
         {
             public int Id { get; set; }
             public string Title { get; set; }
@@ -26,14 +26,14 @@ namespace Application.TodoLists
             }
         }
 
-        public class Handler : IRequestHandler<Query, TodoList>
+        public class Handler : IRequestHandler<Query, ItemList>
         {    
             public Handler()
             {
                
             }
 
-            public async Task<TodoList> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<ItemList> Handle(Query request, CancellationToken cancellationToken)
             {
                 return null;
             }
