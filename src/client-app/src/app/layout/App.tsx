@@ -1,7 +1,9 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { Container } from 'semantic-ui-react';
+import { Container, List } from 'semantic-ui-react';
 import axios from 'axios';
 import { IItem } from '../models/item';
+import NavBar from '../../features/nav/NavBar';
+import TodoDashboard from '../../features/todolist/dashboard/TodoDashboard';
 
 const App = () => {
     const [itemList, setItemList] = useState<IItem[]>([]);
@@ -19,11 +21,13 @@ const App = () => {
 
     return (
         <Fragment>
+            <NavBar />
             <Container style={{ marginTop: '7em' }}>
-
-            </Container>na
+                <TodoDashboard todo={itemList} />
+            </Container>
         </Fragment>
-    );
+        )
+    
 };
 
 export default App;

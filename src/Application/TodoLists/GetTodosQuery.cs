@@ -33,8 +33,8 @@ namespace Application.TodoLists
                
             }
 
-            public async Task<ItemList> Handle(Query request, CancellationToken cancellationToken)
-            {
+            public Task<ItemList> Handle(Query request, CancellationToken cancellationToken)
+            {      
                 return null;
             }
 

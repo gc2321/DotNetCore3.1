@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Application.Common.Interfaces
 {
-    public interface IHttpService
+    public interface IDateTime
     {
+        DateTime Now { get;  }
     }
 }
