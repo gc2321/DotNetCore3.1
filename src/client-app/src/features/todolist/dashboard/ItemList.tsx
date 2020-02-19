@@ -1,34 +1,32 @@
-﻿import React from 'react';
-import { Item, Segment } from 'semantic-ui-react';
-import { IItem } from '../../../app/models/item';
+﻿import React, { useContext } from "react";
+import { Item, Segment } from "semantic-ui-react";
+import { IItem } from "../../../app/models/item";
+import { observer } from "mobx-react-lite";
+import ItemStore from "../../../app/stores/itemStore";
 
-interface IProps {
-    items: IItem[];
-}
+const ItemList: React.FC = () => {
+  const itemStore = useContext(ItemStore);
+  const { itemsByKey } = itemStore;
 
-const ItemList: React.FC<IProps> = ({
-    items
-}) => {
-    return (
-        <Segment clearing>
-            <Item.Group>
-                {items.map(item => (
-                    <Item key={item.id}>
-                        <Item.Content>
-                            <Item.Header as='a'>{item.title}</Item.Header>
-                            
-                            <Item.Description>
-                                <div>{item.note}</div>
-                            </Item.Description>
+  return (
+    <Segment clearing>
+      <Item.Group>
+        {itemsByKey.map(item => (
+          <Item key={item.id}>
+            <Item.Content>
+              <Item.Header as="a">{item.title}</Item.Header>
 
-                            <Item.Extra>
-                            </Item.Extra>
-                        </Item.Content>
-                    </Item>
-                ))}
-            </Item.Group>
-        </Segment>
-    );
+              <Item.Description>
+                <div>{item.note}</div>
+              </Item.Description>
+
+              <Item.Extra></Item.Extra>
+            </Item.Content>
+          </Item>
+        ))}
+      </Item.Group>
+    </Segment>
+  );
 };
 
-export default ItemList;
+export default observer(ItemList);

@@ -1,33 +1,32 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import { Container } from 'semantic-ui-react';
-import axios from 'axios';
-import { IItem } from '../models/item';
-import NavBar from '../../features/nav/NavBar';
-import TodoDashboard from '../../features/todolist/dashboard/TodoDashboard';
+import React, { useState, useEffect, Fragment, useContext } from "react";
+import { Container } from "semantic-ui-react";
+import { IItem } from "../models/item";
+import NavBar from "../../features/nav/NavBar";
+import TodoDashboard from "../../features/todolist/dashboard/TodoDashboard";
+import LoadingComponent from './LoadingComponent';
+import ItemStore from '../stores/itemStore';
+import {observer} from 'mobx-react-lite';
 
 const App = () => {
-    const [itemList, setItemList] = useState<IItem[]>([]);
+  const itemStore = useContext(ItemStore);
+  const [itemList, setItemList] = useState<IItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  const[ submitting, setSubmitting] = useState(false);
 
-    useEffect(() => {
-        axios.get<IItem[]>('http://localhost:5000/todolist/')
-            .then(response => {
-                let toDoList: IItem[] = [];
-                response.data.forEach(item => {
-                    toDoList.push(item);
-                })
-                setItemList(toDoList);
-            });
-    }, []);
+  useEffect(() => {
+    itemStore.loadItems();
+  }, [itemStore]);
 
-    return (
-        <Fragment>
-            <NavBar />
-            <Container style={{ marginTop: '7em' }}>
-                <TodoDashboard todo={itemList} />
-            </Container>
-        </Fragment>
-        )
-    
+  if(itemStore.loadingInitial) return <LoadingComponent />
+
+  return (
+    <Fragment>
+      <NavBar />
+      <Container style={{ marginTop: "7em" }}>
+        <TodoDashboard />
+      </Container>
+    </Fragment>
+  );
 };
 
-export default App;
+export default observer(App);

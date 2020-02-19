@@ -1,18 +1,19 @@
-﻿import React from "react";
+﻿import React, { useContext } from "react";
 import { Grid } from "semantic-ui-react";
 import { IItem } from "../../../app/models/item";
 import ItemList from "./ItemList";
 import ItemDetails from "../details/ItemDetails";
+import { observer } from "mobx-react-lite";
+import ItemStore from '../../../app/stores/itemStore';
 
-interface IProps {
-  todo: IItem[];
-}
+const TodoDashboard: React.FC = () => {
 
-const TodoDashboard: React.FC<IProps> = ({ todo }) => {
+  const itemStore = useContext(ItemStore);
+
   return (
     <Grid>
         <Grid.Column width={11}>
-          <ItemList items={todo} />
+          <ItemList />
         </Grid.Column>
         <Grid.Column width={5}>
           <ItemDetails />
@@ -21,4 +22,4 @@ const TodoDashboard: React.FC<IProps> = ({ todo }) => {
   );
 };
 
-export default TodoDashboard;
+export default observer(TodoDashboard);
