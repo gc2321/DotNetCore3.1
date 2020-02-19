@@ -16,26 +16,15 @@ namespace API.Controllers
         {
             var toDoList = new List<Item>();
 
-            toDoList.Add(new Item()
+            for (var i = 0; i < 150; i++)
             {
-                Id = 0,
-                Title = "first title",
-                Note = "first note"
-            });
-
-            toDoList.Add(new Item()
-            {
-                Id = 1,
-                Title = "second title",
-                Note = "second note"
-            });
-
-            toDoList.Add(new Item()
-            {
-                Id = 2,
-                Title = "third title",
-                Note = "third note"
-            });
+                toDoList.Add(new Item()
+                {
+                    Id = i + 1,
+                    Title = $"{i + 1} Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                    Note = $"{i + 1} Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                });
+            }
 
             return toDoList;
         }
