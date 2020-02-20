@@ -11,6 +11,10 @@ body {
   ) !important;
 }
 
+/* search bar */
+.ui.search > .ui.input.icon { width: 300px; }
+
+
 /*home page styles*/
 
 .masthead {

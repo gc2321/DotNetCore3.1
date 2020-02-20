@@ -9,7 +9,7 @@ const ItemList: React.FC = () => {
   const { itemsByKey } = itemStore;
 
   return (
-    <Segment clearing>
+    <Segment clearing style={{marginTop: "15px", marginBottom: "20px" }}>
       <Item.Group>
         {itemsByKey.map(item => (
           <Item key={item.id}>

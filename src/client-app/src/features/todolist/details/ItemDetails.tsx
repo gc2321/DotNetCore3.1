@@ -3,7 +3,7 @@ import { Card } from "semantic-ui-react";
 
 const ItemDetails: React.FC = () => {
   return (
-    <Card fluid>
+    <Card fluid style={{marginTop: "15px", marginBottom: "15px" }}>
       <Card.Content>
         <Card.Header>This Header</Card.Header>
         <Card.Meta>
