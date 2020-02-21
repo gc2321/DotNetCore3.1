@@ -1,20 +1,29 @@
 import React from "react";
-import { Form, Search, Radio, Container } from "semantic-ui-react";
+import {
+  Form,
+  Search,
+  Radio,
+  Container,
+  Label,
+  Input
+} from "semantic-ui-react";
 
 const SearchBox: React.FC = () => {
   return (
-    <Container>
-      <Search style={ {marginBottom: "10px" }}/>
-      <Form style={ {marginBottom: "-10px" }}>
+    <Container className="searchBox">
+      <Search style={{ marginBottom: "10px" }} />
+      <Form style={{ marginBottom: "-15px" }} >
         <Form.Group inline>
-          <Radio label="Option one" name="radioGroup" value="one" />
-          <Radio
-            label="Option two"
-            name="radioGroup"
-            value="two"
-            defaultChecked
-          />
-          <Radio label="Option three" name="radioGroup" value="three" />
+          <Radio name="radioGroup" value="one" />
+          <Label color="red" horizontal>
+            Option 1
+          </Label>
+          <Radio name="radioGroup" value="two" defaultChecked />
+          <Label color="purple" horizontal>
+            Option 2
+          </Label>
+          <Radio name="radioGroup" value="three" />
+          <Label horizontal>Option 3</Label>
         </Form.Group>
       </Form>
     </Container>

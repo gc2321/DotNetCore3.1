@@ -19,7 +19,7 @@ const HomePage = () => {
         <Header as="h2" inverted content="Welcome to HomePage" />
 
         <Button as={Link} to="/items" size="huge" inverted>
-          Take me to the activities!
+          Take me to the items!
         </Button>
       </Container>
     </Segment>

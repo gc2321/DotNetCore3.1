@@ -1,5 +1,5 @@
 ﻿import React, { useContext } from 'react';
-import { Menu, Container, Search, Radio } from 'semantic-ui-react';
+import { Menu, Container} from 'semantic-ui-react';
 import ItemStore from '../../app/stores/itemStore';
 import { Link, NavLink } from 'react-router-dom';
 import SearchBox from './SearchBox';
@@ -17,10 +17,16 @@ const NavBar: React.FC = () => {
           />
           Home Page
         </Menu.Item>
-        <Menu.Item name="Menu" as={NavLink} to="/items" />
-        <Menu.Item>
+
+        <Menu.Item name="Menu" as={NavLink} to="/items"/>
+
+        <Menu.Item >
          <SearchBox/>
         </Menu.Item>
+
+         <Menu.Item>
+           Events
+           </Menu.Item>
       </Container>
     </Menu>
   );
