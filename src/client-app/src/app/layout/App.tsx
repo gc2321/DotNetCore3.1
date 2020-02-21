@@ -8,6 +8,8 @@ import ItemStore from "../stores/itemStore";
 import { observer } from "mobx-react-lite";
 import { Route, withRouter, RouteComponentProps } from "react-router-dom";
 import HomePage from "../../features/home/HomePage";
+import AboutUs from "../../features/home/AboutUs";
+import ContactUs from "../../features/home/ContactUs";
 
 const App: React.FC<RouteComponentProps> = () => {
   const itemStore = useContext(ItemStore);
@@ -24,13 +26,15 @@ const App: React.FC<RouteComponentProps> = () => {
   return (
     <Fragment>
       <Route exact path="/" component={HomePage} />
+      <Route exact path="/AboutUs" component={AboutUs} />
+      <Route exact path="/ContactUs" component={ContactUs} />
       <Route
-        path={"/(.+)"}
+        path={"/content/(.+)"}
         render={() => (
           <Fragment>
             <NavBar />
             <Container style={{ marginTop: "7em" }}>
-              <Route path="/items" component={TodoDashboard} />
+              <Route path="/content/items" component={TodoDashboard} />
             </Container>
           </Fragment>
         )}

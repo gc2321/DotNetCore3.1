@@ -1,5 +1,12 @@
 import React from "react";
-import { Container, Segment, Header, Image, Button } from "semantic-ui-react";
+import {
+  Container,
+  Segment,
+  Header,
+  Image,
+  Button,
+  List
+} from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 const HomePage = () => {
@@ -18,9 +25,23 @@ const HomePage = () => {
 
         <Header as="h2" inverted content="Welcome to HomePage" />
 
-        <Button as={Link} to="/items" size="huge" inverted>
+        <Button as={Link} to="/content/items" size="huge" inverted>
           Take me to the items!
         </Button>
+        <div style={{ "height":"300px"}}>
+
+        </div>
+        <div>
+          <List inverted horizontal>
+            <List.Item as={Link} to="/AboutUs">
+              About Us
+            </List.Item>
+
+            <List.Item as={Link} to="/ContactUs">
+              Contact
+            </List.Item>
+          </List>
+        </div>
       </Container>
     </Segment>
   );

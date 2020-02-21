@@ -18,7 +18,7 @@ const NavBar: React.FC = () => {
           Home Page
         </Menu.Item>
 
-        <Menu.Item name="Menu" as={NavLink} to="/items"/>
+        <Menu.Item name="Menu" as={NavLink} to="/content/items"/>
 
         <Menu.Item >
          <SearchBox/>
