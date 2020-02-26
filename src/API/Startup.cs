@@ -1,3 +1,5 @@
+using System;
+using System.Net.Http.Headers;
 using Application;
 using Application.Common.Interfaces;
 using Application.TodoLists;
@@ -36,6 +38,14 @@ namespace API
                     policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
                 });
             });
+
+            services.AddHttpClient("github", c =>
+            {
+                c.BaseAddress = new Uri("https://api.github.com/");
+                c.DefaultRequestHeaders.Accept.Clear();
+                c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            });
+
 
             services.AddMediatR(typeof(GetTodosQuery.Handler).Assembly);
 

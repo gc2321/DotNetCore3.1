@@ -3,11 +3,11 @@ import { createContext } from "react";
 import { IItem } from "../models/item";
 import agent from "../api/agent";
 
-configure({enforceActions: 'always'});
+configure({ enforceActions: "always" });
 
 class ItemStore {
   @observable itemRegistry = new Map();
-//   @observable items: IItem[] = [];
+  //   @observable items: IItem[] = [];
   @observable loadingInitial = false;
 
   @computed get itemsByKey() {
@@ -19,19 +19,19 @@ class ItemStore {
 
     try {
       const items = await agent.Items.list();
-        runInAction('load items', ()=>{
-            items.forEach(item => {
-                this.itemRegistry.set(item.id, item);
-              });
-              this.loadingInitial = false;
-        }) 
-    } catch (error) {
-        runInAction('load items error', ()=>{
-            console.log(error);
-            this.loadingInitial = false;
+      runInAction("load items", () => {
+        items.forEach((item, i) => {
+          item.title = (i+1).toString(10).concat(" ", item.title);
+          this.itemRegistry.set(item.id, item);
         });
+        this.loadingInitial = false;
+      });
+    } catch (error) {
+      runInAction("load items error", () => {
+        console.log(error);
+        this.loadingInitial = false;
+      });
     }
-    
   };
 }
 

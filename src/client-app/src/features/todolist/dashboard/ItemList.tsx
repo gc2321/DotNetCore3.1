@@ -59,6 +59,18 @@ const ItemList: React.FC = () => {
           ))}
         </Item.Group>
       </Segment>
+
+      <div className="ui center aligned segment">
+        <Pagination
+          style={{ marginTop: "10px" }}
+          boundaryRange={2}
+          siblingRange={1}
+          activePage={page}
+          totalPages={totalPages}
+          onPageChange={setPageNum}
+        />
+      </div>
+      
     </div>
   );
 };
