@@ -9,36 +9,51 @@ using System.Threading.Tasks;
 
 namespace Application.TodoLists
 {
-    public class GetTodosQuery
+    public class GetTodos
     {
-        public class Query : IRequest<ItemList>
+        public class Query : IRequest<IEnumerable<Item>>
         {
-            public int Id { get; set; }
-            public string Title { get; set; }
+            public string Term { get; set; }
+            public string Type { get; set; }
         }
 
         public class QueryValidator : AbstractValidator<Query>
         {
             public QueryValidator()
             {
-                RuleFor(x => x.Id).NotEmpty();
-                RuleFor(x => x.Title).NotEmpty();
+                RuleFor(x => x.Term).NotEmpty();
+                RuleFor(x => x.Type).NotEmpty();
             }
         }
 
-        public class Handler : IRequestHandler<Query, ItemList>
-        {    
+        public class Handler : IRequestHandler<Query, IEnumerable<Item>>
+        {
             public Handler()
             {
-               
+
             }
 
-            public Task<ItemList> Handle(Query request, CancellationToken cancellationToken)
-            {      
-                return null;
-            }
+            public async Task<IEnumerable<Item>> Handle(Query request, CancellationToken cancellationToken)
+            {
+                var toDoList = new List<Item>();
+                for (var i = 0; i < 7; i++)
+                {
+                    toDoList.Add(new Item()
+                    {
+                        Id = i + 1,
+                        Title = $"Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                        Note = $"Duis aute irure cillum dolore eu fugiat nulla pariatur."
+                    });
+                }
 
-          
+                var responseTask = Task.Run(()=> toDoList);
+                var response = await responseTask;
+
+                return toDoList;
+            }
         }
+
+
     }
+}
 }

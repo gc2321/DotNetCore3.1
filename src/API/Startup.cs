@@ -47,10 +47,10 @@ namespace API
             });
 
 
-            services.AddMediatR(typeof(GetTodosQuery.Handler).Assembly);
+            services.AddMediatR(typeof(GetTodos.Handler).Assembly);
 
             services.AddMvc()
-                .AddFluentValidation(cfg => cfg.RegisterValidatorsFromAssemblyContaining<GetTodosQuery>());
+                .AddFluentValidation(cfg => cfg.RegisterValidatorsFromAssemblyContaining<GetTodos>());
 
             services.AddControllers();
         }
