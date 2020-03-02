@@ -52,8 +52,5 @@ namespace Application.TodoLists
                 return toDoList;
             }
         }
-
-
     }
-}
 }
