@@ -23,10 +23,6 @@ const NavBar: React.FC = () => {
         <Menu.Item >
          <SearchBox/>
         </Menu.Item>
-
-         <Menu.Item>
-           Events
-           </Menu.Item>
       </Container>
     </Menu>
   );

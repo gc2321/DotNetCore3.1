@@ -12,8 +12,8 @@ body {
 }
 
 /* search bar */
-.searchBox .ui.search > .ui.input.icon { width: 400px; }
-.searchBox .ui.radio { margin-right: 5px; }
+.searchBox .ui.icon.input > input { width: 350px; border-radius: 50px}
+.searchBox .ui.radio.checkbox { margin-top: 10px; margin-right: 10px }
 
 /*home page styles*/
 

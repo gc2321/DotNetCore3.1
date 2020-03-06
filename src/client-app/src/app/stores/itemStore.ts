@@ -13,14 +13,13 @@ class ItemStore {
   @observable submitting = false;
 
   @observable queryTerm: string = "";
-  @observable queryType: string = "";
+  @observable queryType: string = "one";
 
   @computed get itemsByKey() {
     return Array.from(this.itemRegistry.values()).sort((a, b) => a.id - b.id);
   }
 
-  @action setQueryParams = (term: string, type: string) => {
-    this.queryTerm = term;
+  @action setOptionParam = (type: string) => {
     this.queryType = type;
   };
 
