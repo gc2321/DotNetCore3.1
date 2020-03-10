@@ -14,49 +14,67 @@ import ItemStore from "../../../src/app/stores/itemStore";
 
 const SearchBox: React.FC = () => {
   const itemStore = useContext(ItemStore);
-  const { queryTerm, queryType, searchItem, setOptionParam } = itemStore;
+  const {
+    queryTerm,
+    queryType,
+    searchItem,
+    setQueryTerm,
+    setQueryType
+  } = itemStore;
 
   const handleSubmit = () => {
-    searchItem({ term: queryTerm, type: queryType });
+    searchItem();
   };
 
-  const handleOptionChange = (event: any) => {
-    const { option } = event.currentTarget;
-    setOptionParam(option);
+  const handleOptionChange = (event: any, {value}:any) => {
+    //const { value } = event.currentTarget;
+    setQueryType(value);
+  };
+
+  const handleInputChange = (event: FormEvent<HTMLInputElement>) => {
+    const { value } = event.currentTarget;
+    setQueryTerm(value);
   };
 
   return (
-    <div className="searchBox">
-      <div>
-        <Input icon="search" placeholder="Search..." />
-      </div>
+    <Form onSubmit={handleSubmit}>
+      <div className="searchBox">
+        <div>
+          <Form.Input
+            icon={{ name: "search", link: true, onClick: () => handleSubmit() }}
+            onChange={handleInputChange}
+            placeholder="Search..."
+            value={queryTerm}
+          />
+        </div>
 
-      <div>
-        <Form.Group inline>
-          <Radio
-            label="Option 1"
-            onChange={handleOptionChange}
-            name="option"
-            value="one"
-            checked={queryType === "one"}
-          />
-          <Radio
-            label="Option 2"
-            onChange={handleOptionChange}
-            name="option"
-            value="two"
-            checked={queryType === "two"}
-          />
-          <Radio
-            label="Option 3"
-            onChange={handleOptionChange}
-            name="option"
-            value="three"
-            checked={queryType === "three"}
-          />
-        </Form.Group>
+        <div>
+          <Form.Group inline style={{ marginBottom: "-2px" }}>
+            <Radio
+              label='Option 1'
+              name='option'
+              value='one'
+              checked={queryType==='one'}
+              onChange={handleOptionChange}
+            />
+            <Radio
+              label='Option 2'
+              name='option'
+              value='two'
+              checked={queryType==='two'}
+              onChange={handleOptionChange}
+            />
+            <Radio
+              label='Option 3'
+              name='option'
+              value='three'
+              checked={queryType==='three'}
+              onChange={handleOptionChange}
+            />
+          </Form.Group>
+        </div>
       </div>
-    </div>
+    </Form>
   );
 };
 

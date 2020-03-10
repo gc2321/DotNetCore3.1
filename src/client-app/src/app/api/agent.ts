@@ -13,7 +13,7 @@ const requests = {
 
 const Items = {
     list:() : Promise<IItem[]> => requests.get('/todolist'),
-    search: (param: IFindItemsParam) : Promise<IItem[]> => requests.post('/search', param)
+    search: (param: IFindItemsParam) : Promise<IItem[]> => requests.post('/todolist/search', param)
 }
 
 export default {

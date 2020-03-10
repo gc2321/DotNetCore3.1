@@ -19,8 +19,12 @@ class ItemStore {
     return Array.from(this.itemRegistry.values()).sort((a, b) => a.id - b.id);
   }
 
-  @action setOptionParam = (type: string) => {
-    this.queryType = type;
+  @action setQueryType = (qtype: string) => {
+    this.queryType = qtype;
+  };
+
+  @action setQueryTerm = (term: string) => {
+    this.queryTerm = term;
   };
 
   @action loadItems = async () => {
@@ -43,10 +47,11 @@ class ItemStore {
     }
   };
 
-  @action searchItem = async (param: IFindItemsParam) => {
+  @action searchItem = async () => {
+    console.log("starting search");
     this.submitting = true;
     try {
-      const results = await agent.Items.search(param);
+      const results = await agent.Items.search({term: this.queryTerm, type: this.queryType});
       runInAction("search items", () => {
         results.forEach((item, i) => {
           item.title = (i + 1).toString(10).concat(" ", item.title);
